@@ -25,11 +25,12 @@
       <template v-if="rootOptionsLoaded">
         <div v-if="searching && noSearchResults" class="vue-treeselect__no-results-tip">
           <div class="vue-treeselect__icon-wrapper"><span class="vue-treeselect__icon-warning" /></div>
-          <span class="vue-treeselect__no-results-tip-text" v-html="noResultsText" />
+          <span class="vue-treeselect__no-results-tip-text">{{ noResultsText }}</span>
+          <span v-if="noResultsCustomText" @click.prevent="noResultsCustomEvent" v-html="noResultsCustomText" />
         </div>
         <div v-else-if="normalizedOptions.length === 0" class="vue-treeselect__no-options-tip">
           <div class="vue-treeselect__icon-wrapper"><span class="vue-treeselect__icon-warning" /></div>
-          <span class="vue-treeselect__no-options-tip-text" v-html="noOptionsText" />
+          <span class="vue-treeselect__no-options-tip-text">{{ noOptionsText }}</span>
         </div>
         <div v-else class="vue-treeselect__list">
           <treeselect-option
