@@ -25,11 +25,11 @@
       <template v-if="rootOptionsLoaded">
         <div v-if="searching && noSearchResults" class="vue-treeselect__no-results-tip">
           <div class="vue-treeselect__icon-wrapper"><span class="vue-treeselect__icon-warning" /></div>
-          <span class="vue-treeselect__no-results-tip-text">{{ noResultsText }}</span>
+          <span class="vue-treeselect__no-results-tip-text" v-html="noResultsText" />
         </div>
         <div v-else-if="normalizedOptions.length === 0" class="vue-treeselect__no-options-tip">
           <div class="vue-treeselect__icon-wrapper"><span class="vue-treeselect__icon-warning" /></div>
-          <span class="vue-treeselect__no-options-tip-text">{{ noOptionsText }}</span>
+          <span class="vue-treeselect__no-options-tip-text" v-html="noOptionsText" />
         </div>
         <div v-else class="vue-treeselect__list">
           <treeselect-option
@@ -69,7 +69,6 @@
 </template>
 
 <script>
-  /* eslint-disable */
   import treeselectMixin from '../mixins/treeselectMixin'
   import MultiValue from './MultiValue'
   import SingleValue from './SingleValue'
@@ -84,8 +83,5 @@
         return this.multiple ? MultiValue : SingleValue
       },
     },
-    created() {
-      console.log('kevin')
-    }
   }
 </script>

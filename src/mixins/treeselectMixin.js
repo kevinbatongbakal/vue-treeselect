@@ -744,7 +744,10 @@ export default {
     },
 
     completeSelectedNodeIdList() {
-      const nodeIds = this.selectedNodeIds.slice()
+      const nodeIds = []
+      try {
+        this.selectedNodeIds.slice()
+      } catch (err) {}
       this.selectedNodeIds = []
       this.nodeCheckedStateMap = Object.create(null)
       this.selectedNodeMap = Object.create(null)
