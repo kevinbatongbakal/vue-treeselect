@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-treeselect__value-wrapper">
+  <div class="vue-treeselect__value-wrapper test-kevin">
     <transition-group
       tag="div"
       class="vue-treeselect__multi-value"

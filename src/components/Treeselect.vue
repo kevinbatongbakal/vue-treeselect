@@ -69,6 +69,7 @@
 </template>
 
 <script>
+  /* eslint-disable */
   import treeselectMixin from '../mixins/treeselectMixin'
   import MultiValue from './MultiValue'
   import SingleValue from './SingleValue'
@@ -83,5 +84,8 @@
         return this.multiple ? MultiValue : SingleValue
       },
     },
+    created() {
+      console.log('kevin')
+    }
   }
 </script>
