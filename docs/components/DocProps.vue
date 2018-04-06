@@ -169,6 +169,16 @@
         defaultValue: v('"No results found..."'),
         description: 'Text displayed when there are no matching search results.',
       }, {
+        name: 'noResultsCustomText',
+        type: 'String',
+        defaultValue: v('""'),
+        description: 'Custom text.',
+      }, {
+        name: 'noResultsCustomEvent',
+        type: 'Function',
+        defaultValue: NO_DEFAULT_VALUE,
+        description: 'Custom event upon click the custom text.',
+      }, {
         name: 'noOptionsText',
         type: 'String',
         defaultValue: v('"No options available."'),

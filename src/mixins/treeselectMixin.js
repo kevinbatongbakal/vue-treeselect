@@ -292,6 +292,15 @@ export default {
       default: 'No results found...',
     },
 
+    noResultsCustomText: {
+      type: String,
+      default: '',
+    },
+
+    noResultsCustomEvent: {
+      type: Function,
+    },
+
     /**
      * Text displayed when there are no available options
      */
