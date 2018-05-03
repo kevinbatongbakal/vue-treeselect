@@ -1,3 +1,4 @@
+/* eslint-disable */
 import fuzzysearch from 'fuzzysearch'
 
 import {
@@ -820,9 +821,11 @@ export default {
 
     traverseAllNodes(callback) {
       this.normalizedOptions.forEach(rootNode => {
-        // post-order traversal
-        this.traverseDescendants(rootNode, callback)
-        callback(rootNode)
+        if (rootNode.raw.display === undefined || rootNode.raw.display === 0) {
+          // post-order traversal
+          this.traverseDescendants(rootNode, callback)
+          callback(rootNode)
+        }
       })
     },
 

@@ -38,6 +38,7 @@
             v-for="childNode in node.children"
             :node="childNode"
             :key="childNode.id"
+            v-if="childNode.raw.display === undefined || childNode.raw.display === 0"
             >
             <template slot="option-label" slot-scope="{ node, shouldShowCount, count, labelClassName, countClassName }">
               <slot name="option-label" :node="node" :should-show-count="shouldShowCount" :count="count"

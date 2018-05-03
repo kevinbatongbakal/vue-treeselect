@@ -33,16 +33,17 @@
         </div>
         <div v-else class="vue-treeselect__list">
           <treeselect-option
-            v-for="rootNode in normalizedOptions"
+            v-for="(rootNode) in normalizedOptions"
             :node="rootNode"
             :key="rootNode.id"
+            v-if="rootNode.raw.display === undefined || rootNode.raw.display === 0"
             >
             <template slot="option-label" slot-scope="{ node, shouldShowCount, count, labelClassName, countClassName }">
               <slot name="option-label" :node="node" :should-show-count="shouldShowCount" :count="count"
                 :label-class-name="labelClassName" :count-class-name="countClassName">
                 <label :class="labelClassName">
                   {{ node.label }}
-                  <span v-if="shouldShowCount" :class="countClassName">({{ count }})</span>
+                  <span v-if="shouldShowCount" :class="countClassName">({{ customCount(node) }})</span>
                 </label>
               </slot>
             </template>
@@ -69,6 +70,7 @@
 </template>
 
 <script>
+  /* eslint-disable */
   import treeselectMixin from '../mixins/treeselectMixin'
   import MultiValue from './MultiValue'
   import SingleValue from './SingleValue'
@@ -82,6 +84,21 @@
       ValueComponent() {
         return this.multiple ? MultiValue : SingleValue
       },
+    },
+    methods: {
+      customCount(node) {
+        let count = 0
+        try {
+          if (node && node.children && node.children.length > 0) {
+            node.children.forEach(c => {
+              if (c.raw.display === undefined || c.raw.display === 0) {
+                count++
+              }
+            })
+          }
+        } catch(err) {}
+        return count
+      }
     },
   }
 </script>
