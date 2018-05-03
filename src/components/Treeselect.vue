@@ -36,7 +36,7 @@
             v-for="(rootNode) in normalizedOptions"
             :node="rootNode"
             :key="rootNode.id"
-            v-if="rootNode.raw.display === undefined || rootNode.raw.display === 0"
+            v-if="(rootNode.raw.display === undefined || rootNode.raw.display === 0) && (rootNode.children === undefined || customCount(rootNode) > 0)"
             >
             <template slot="option-label" slot-scope="{ node, shouldShowCount, count, labelClassName, countClassName }">
               <slot name="option-label" :node="node" :should-show-count="shouldShowCount" :count="count"
@@ -98,6 +98,9 @@
           }
         } catch(err) {}
         return count
+      },
+      checkRoot(root) {
+        console.log('root', root)
       }
     },
   }
