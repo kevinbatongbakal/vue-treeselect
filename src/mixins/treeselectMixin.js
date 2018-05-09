@@ -346,7 +346,7 @@ export default {
      * Array of available options
      * @type {Object[]}
      */
-    options: {
+    optionsData: {
       type: Array,
     },
 
@@ -649,15 +649,15 @@ export default {
   methods: {
     verifyProps() {
       if (!this.loadRootOptions) {
-        if (!this.options) {
+        if (!this.optionsData) {
           warning(
             () => false,
             () => 'Required prop `options` is not provided.'
           )
-        } else if (!Array.isArray(this.options)) {
+        } else if (!Array.isArray(this.optionsData)) {
           warning(
             () => false,
-            () => `Expected prop \`options\` to be an array, instead got: ${this.options}.`
+            () => `Expected prop \`options\` to be an array, instead got: ${this.optionsData}.`
           )
         }
       }
@@ -1325,7 +1325,7 @@ export default {
   created() {
     this.verifyProps()
     this.resetFlags()
-    this.initialize(this.options)
+    this.initialize(this.optionsData)
   },
 
   mounted() {
