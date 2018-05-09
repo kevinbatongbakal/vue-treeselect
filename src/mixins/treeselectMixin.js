@@ -803,8 +803,10 @@ export default {
       if (parentNode.isBranch && parentNode.level < maxLevel) {
         parentNode.children.forEach(child => {
           // DFS + post-order traversal
-          this.traverseDescendants(child, maxLevel, callback)
-          callback(child)
+          if (child.raw.display === undefined || child.raw.display === 0) {
+            this.traverseDescendants(child, maxLevel, callback)
+            callback(child)
+          }
         })
       }
     },
