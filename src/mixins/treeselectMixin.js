@@ -919,7 +919,7 @@ export default {
         const lowerCasedSearchQuery = this.searchQuery.toLowerCase()
         this.traverseAllNodes(node => {
           const isMatched = node.isMatched = this.disableFuzzyMatching
-            ? node.lowerCasedLabel.indexOf(lowerCasedSearchQuery) !== -1
+            ? this.includesV2(node.lowerCasedLabel, lowerCasedSearchQuery, node)
             : fuzzysearch(lowerCasedSearchQuery, node.lowerCasedLabel)
 
           if (isMatched) {
@@ -944,6 +944,11 @@ export default {
         this.searching = false
         // TODO: need resetting state?
       }
+    },
+
+    includesV2(arrOrStr, elem, node) {
+      const parentLabel = node.parentNode ? node.parentNode.label.toLowerCase() : undefined
+      return (arrOrStr.indexOf(elem) !== -1) || (parentLabel && (parentLabel.indexOf(elem) !== -1))
     },
 
     closeMenu() {
